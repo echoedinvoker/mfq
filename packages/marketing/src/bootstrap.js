@@ -7,7 +7,9 @@ import { createMemoryHistory } from 'history';
 const mount = (el, { onNavigate }) => {
   const history = createMemoryHistory();
 
-  history.listen(onNavigate);
+  if (onNavigate) {
+    history.listen(onNavigate);
+  }
 
   ReactDOM.render(<App history={history} />, el);
 }
@@ -16,7 +18,7 @@ const mount = (el, { onNavigate }) => {
 if (process.env.NODE_ENV === 'development') {
   const el = document.querySelector('#_marketing-dev-root');
   if (el) {
-    mount(el);
+    mount(el, {});
   }
 }
 
