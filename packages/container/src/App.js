@@ -14,11 +14,15 @@ export default () => {
     setIsSignedIn(true)
   }
 
+  function onSignOut() {
+    setIsSignedIn(false)
+  }
+
   return (
     <StylesProvider generateClassName={createGenerateClassName({ productionPrefix: 'co' })}>
       <BrowserRouter>
         <div>
-          <Header isSignedIn={isSignedIn} />
+          <Header isSignedIn={isSignedIn} onSignOut={onSignOut} />
           <Suspense fallback={<Progress />}>
             <Switch>
               <Route path="/auth">
